@@ -17,23 +17,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 Copyright (C) 2007 Marco Aurélio Graciotto Silva <magsilva@gmail.com>
 */
 
-// setup our function for fetching stock data
-function check_sso($url, $identity)
-{
-	$result = fopen($url, 'r');
-	if ($result === FALSE) {
-		// return err img link		
-	} else {
-		return $url . '?openid_name=' . $identity;
-	}
-}
 
 function smarty_function_check_sso($params, &$smarty)
 {
    // call the function
    $url = $params['url'];
    $identity = $params['identity'];
-   $result = check_sso($url, $identity);
+      
+   $result = fopen($url, 'r');
+	if ($result === FALSE) {
+		$result = 'images/log-notice.gif';	
+	} else {
+		$result= $url . '?openid_name=' . $identity;
+	}
 
    // assign template variable
    $smarty->assign('sso_status', $result);
