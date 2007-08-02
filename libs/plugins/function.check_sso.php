@@ -23,12 +23,12 @@ function smarty_function_check_sso($params, &$smarty)
    // call the function
    $url = $params['url'];
    $identity = $params['identity'];
-      
+   
    $result = fopen($url, 'r');
 	if ($result === FALSE) {
-		$result = 'images/log-notice.gif';	
+		$result = 'images/error.png';	
 	} else {
-		$result= $url . '?openid_name=' . $identity;
+		$result = $url . '?openid_name=' . $identity;
 	}
 
    // assign template variable
